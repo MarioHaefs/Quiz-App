@@ -58,25 +58,24 @@ function startQuizHTML() {
     return /*html*/ `
     <div class="question-card">
         <h5 id="question-text"></h5>
-         <div onclick="answer('answer_1')" class="abcd">
-            <span class="letter-box">A</span>
+         <div onclick="answer('answer_1')" id="answer_1" class="abcd">
+            <span id="A" class="letter-box">A</span>
             <span id="answer-1" class="answer"></span>
         </div>
-         <div onclick="answer('answer_2')" class="abcd">
-            <span class="letter-box">B</span>
+         <div onclick="answer('answer_2')" id="answer_2" class="abcd">
+            <span id="B" class="letter-box">B</span>
             <span id="answer-2" class="answer"></span>
         </div>
-         <div onclick="answer('answer_3')" class="abcd">
-            <span class="letter-box">C</span>
+         <div onclick="answer('answer_3')" id="answer_3" class="abcd">
+            <span id="C" class="letter-box">C</span>
             <span id="answer-3" class="answer"></span>
         </div>
-         <div onclick="answer('answer_4')" class="abcd">
-            <span class="letter-box">D</span>
+         <div onclick="answer('answer_4')" id="answer_4" class="abcd">
+            <span id="D" class="letter-box">D</span>
             <span id="answer-4" class="answer"></span>
         </div>  
     </div>
     `;
-
 }
 
 
@@ -103,14 +102,52 @@ function showQuestion() {
 }
 
 
+// Unterscheidet richtige und falsche Antwort und markiert dementsprechend farblich //
 function answer(selection) {
     let question = kulinarik[currentQuestion];
     let selectedQuestionNumber = selection.slice(-1);
+    let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if(selectedQuestionNumber == question['right_answer']) {
-        console.log('Richtige Antwort!')
+    if (selectedQuestionNumber == question['right_answer']) {
+        document.getElementById(selection).classList.add('bg-lightgreen');
     } else {
-        console.log('Falsche Antwort!')
+        document.getElementById(selection).classList.add('bg-lightred');
+        document.getElementById(idOfRightAnswer).classList.add('bg-lightgreen');
     }
-    
+}
+
+
+// Zeigt bei onclick auf die Pfeile die voherige oder nächste Frage an //
+function nextQuestion() {
+    if (currentQuestion == 4) {
+        return false
+    } else {
+        currentQuestion++;
+        showQuestion();
+    }
+    resetAnswerButtons();
+}
+
+
+function previousQuestion() {
+    if (currentQuestion == 0) {
+        return false
+    } else {
+        currentQuestion--;
+        showQuestion();
+    }
+    resetAnswerButtons();
+}
+
+
+// Resettet die Antwort Buttons //
+function resetAnswerButtons() {
+    document.getElementById('answer_1').classList.remove('bg-lightred');
+    document.getElementById('answer_1').classList.remove('bg-lightgreen');
+    document.getElementById('answer_2').classList.remove('bg-lightred');
+    document.getElementById('answer_2').classList.remove('bg-lightgreen');
+    document.getElementById('answer_3').classList.remove('bg-lightred');
+    document.getElementById('answer_3').classList.remove('bg-lightgreen');
+    document.getElementById('answer_4').classList.remove('bg-lightred');
+    document.getElementById('answer_4').classList.remove('bg-lightgreen');
 }
