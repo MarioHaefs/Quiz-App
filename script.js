@@ -119,8 +119,8 @@ function answer(selection) {
 
 // Zeigt bei onclick auf die Pfeile die voherige oder nächste Frage an //
 function nextQuestion() {
-    if (currentQuestion == 4) {
-        return false
+    if (currentQuestion >= 4) {
+        showEndScreen();
     } else {
         currentQuestion++;
         showQuestion();
@@ -150,4 +150,30 @@ function resetAnswerButtons() {
     document.getElementById('answer_3').classList.remove('bg-lightgreen');
     document.getElementById('answer_4').classList.remove('bg-lightred');
     document.getElementById('answer_4').classList.remove('bg-lightgreen');
+}
+
+
+// Zeigt den End-Screen an, wenn das Quiz vorbei ist //
+function showEndScreen() {
+    let content = document.getElementById('content');
+    content.innerHTML = '';
+    changeInnerContent();
+    content.innerHTML += /*html*/`
+    <div class="end-screen">
+        <img class="brain-img" src="img/brain result.png">
+        <span class="endScreen-text">Herzlichen Glückwunsch! Du hast das Kulinarik Quiz abgeschlossen!</span>
+        <span class="endScreen-text"><p class="color-orangered">Dein Ergebnis:</p>5/5</span>
+        <button type="button" class="btn btn-primary share-button">SHARE</button>
+        <button onclick="replay()" class="replay-button" type="button">REPLAY</button>
+    </div>
+    `
+
+    let hideArrow = document.getElementById('arrows')
+    hideArrow.classList.add("hide");
+}
+
+
+// Lädt das Quiz neu und du kannst nochmal spielen //
+function replay() {
+    window.location.href = 'index.html';
 }
