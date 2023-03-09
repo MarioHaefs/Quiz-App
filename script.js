@@ -1,6 +1,6 @@
-let kulinarik =  [
+let kulinarik = [
     {
-        "question": "Welches Gemüse ist der Hauptdarsteller eines bekannten italienischen Desserts in Verbindung mit dunkler Schokolade?",
+        "question": "Welches Gemüse ist der Hauptdarsteller eines an der Amalfi Küste bekannten italienischen Desserts in Verbindung mit dunkler Schokolade?",
         "answer_1": "Paprika",
         "answer_2": "Zucchini",
         "answer_3": "Aubergine",
@@ -41,8 +41,76 @@ let kulinarik =  [
     },
 ]
 
+let currentQuestion = 0;
 
+
+// Wechselt vom Start-Design auf das Fragen-Desing und generiert die erste Frage //
 function startQuiz() {
     let content = document.getElementById('content');
+    content.innerHTML = '';
+    changeInnerContent();
+    content.innerHTML += startQuizHTML();
+    showQuestion();
+}
+
+
+function startQuizHTML() {
+    return /*html*/ `
+    <div class="question-card">
+        <h5 id="question-text"></h5>
+         <div onclick="answer('answer_1')" class="abcd">
+            <span class="letter-box">A</span>
+            <span id="answer-1" class="answer"></span>
+        </div>
+         <div onclick="answer('answer_2')" class="abcd">
+            <span class="letter-box">B</span>
+            <span id="answer-2" class="answer"></span>
+        </div>
+         <div onclick="answer('answer_3')" class="abcd">
+            <span class="letter-box">C</span>
+            <span id="answer-3" class="answer"></span>
+        </div>
+         <div onclick="answer('answer_4')" class="abcd">
+            <span class="letter-box">D</span>
+            <span id="answer-4" class="answer"></span>
+        </div>  
+    </div>
+    `;
+
+}
+
+
+// Ändert das Start-Design auf das Fragen-Desing //
+function changeInnerContent() {
+    let backgroundImg = document.getElementById('content');
+    let showArrow = document.getElementById('arrows')
+
+    backgroundImg.classList.remove("background-img");
+    showArrow.classList.remove("hide");
+    backgroundImg.classList.add('background-alice')
+}
+
+
+// Zeigt die Fragen aus unserem JSON in unserem Quiz an //
+function showQuestion() {
+    let question = kulinarik[currentQuestion];
+
+    document.getElementById('question-text').innerHTML = question['question'];
+    document.getElementById('answer-1').innerHTML = question['answer_1'];
+    document.getElementById('answer-2').innerHTML = question['answer_2'];
+    document.getElementById('answer-3').innerHTML = question['answer_3'];
+    document.getElementById('answer-4').innerHTML = question['answer_4'];
+}
+
+
+function answer(selection) {
+    let question = kulinarik[currentQuestion];
+    let selectedQuestionNumber = selection.slice(-1);
+
+    if(selectedQuestionNumber == question['right_answer']) {
+        console.log('Richtige Antwort!')
+    } else {
+        console.log('Falsche Antwort!')
+    }
     
 }

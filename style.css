@@ -39,10 +39,10 @@ body {
     border-bottom-left-radius: 10px;
     height: 75vh !important;
     width: 200px;
+    font-family: 'Rubik' !important;
 }
 
 .nav-text {
-    font-family: Rubik;
     font-size: 20px;
     color: rgba(255, 255, 255, 0.7);
     border-left: 3px solid transparent;
@@ -73,7 +73,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: PT Sans !important;
+    border-radius: 10px;
+}
+
+.background-img {
     background-image: url('img/brainbg.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -81,6 +84,7 @@ body {
 
 .content-quiz {
     text-align: center;
+    font-family: 'PT Sans';
 }
 
 h1 {
@@ -100,8 +104,74 @@ h1 {
     right: 140px;
 }
 
-.arrow  {
+.button:hover {
+    transform: scale(1.02);
+}
+
+.arrow-btn  {
     height: 20px;
     margin-left: 20px;  
     padding-bottom: 3px;
+}
+
+.background-alice {
+    background-color: aliceblue;
+}
+
+h5 {
+    font-size: 21px !important;
+    text-align: center;
+    margin-bottom: 48px !important;
+}
+
+.question-card {
+    margin: 24px;
+    font-family: 'Rubik' !important;
+}
+
+.abcd {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-bottom: 24px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.abcd:hover {
+    transform: scale(1.005);
+    background-color: rgb(255, 247, 247);
+}
+
+.letter-box {
+    background-color: #d3d3d3;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-weight: bold;
+}
+
+.answer {
+    font-weight: 600;
+    font-size: 17px;
+    margin-left: 64px;
+}
+
+.left-right-arrow {
+    display: flex;
+    justify-content: space-around;
+}
+
+.hide {
+    display: none;
+}
+
+.arrow-hover {
+    cursor: pointer;
+}
+
+.arrow-hover:hover {
+   transform: scale(1.05);
 }
