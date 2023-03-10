@@ -8,7 +8,7 @@ let kulinarik = [
         "right_answer": 3
     },
     {
-        "question": "Für welches Sandwich ist die Stadt Philadelphia weltweit bekannt?",
+        "question": "Für welches Sandwich ist die amerikanische Stadt Philadelphia über ihre Grenzen hinaus weltweit bekannt?",
         "answer_1": "Cheesesteak Sandwich",
         "answer_2": "Pastrami Sandwich",
         "answer_3": "Club Sandwich",
@@ -24,7 +24,7 @@ let kulinarik = [
         "right_answer": 4
     },
     {
-        "question": "Kimchi gilt als Superfood der koreanischen Küche. Was ist Kimchi?",
+        "question": "Kimchi gilt als Superfood der koreanischen Küche. Auch bei uns in Europa ist es sehr beliebt. Was ist Kimchi?",
         "answer_1": "Gegorener Fisch",
         "answer_2": "Gebratener Seidentofu",
         "answer_3": "Gegorenes Gemüse",
@@ -42,6 +42,9 @@ let kulinarik = [
 ]
 
 let currentQuestion = 0;
+let rightQuestions = 0;
+let number = 1;
+
 
 
 // Wechselt vom Start-Design auf das Fragen-Desing und generiert die erste Frage //
@@ -74,6 +77,10 @@ function startQuizHTML() {
             <span id="D" class="letter-box">D</span>
             <span id="answer-4" class="answer"></span>
         </div>  
+        <span>Du hast <b id="question-number">${number}</b> von <b>${kulinarik.length}</b> Fragen beantwortet.</span>
+        <div class="progress">
+            <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="25">25%</div>
+        </div>
     </div>
     `;
 }
@@ -90,9 +97,14 @@ function changeInnerContent() {
 }
 
 
-// Zeigt die Fragen aus unserem JSON in unserem Quiz an //
+// Zeigt die Fragen aus unserem JSON in unserem Quiz an. Zusätzlich aktualisiert sich die Progress-Bar //
 function showQuestion() {
     let question = kulinarik[currentQuestion];
+    let percent = number / kulinarik.length;
+    percent = percent * 100;
+
+    document.getElementById('progress-bar').innerHTML = `${percent} %`;
+    document.getElementById('progress-bar').style = `width: ${percent}%;`;
 
     document.getElementById('question-text').innerHTML = question['question'];
     document.getElementById('answer-1').innerHTML = question['answer_1'];
@@ -110,6 +122,7 @@ function answer(selection) {
 
     if (selectedQuestionNumber == question['right_answer']) {
         document.getElementById(selection).classList.add('bg-lightgreen');
+        rightQuestions++;
     } else {
         document.getElementById(selection).classList.add('bg-lightred');
         document.getElementById(idOfRightAnswer).classList.add('bg-lightgreen');
@@ -123,6 +136,8 @@ function nextQuestion() {
         showEndScreen();
     } else {
         currentQuestion++;
+        number++;
+        document.getElementById('question-number').innerHTML = `${number}`;
         showQuestion();
     }
     resetAnswerButtons();
@@ -134,6 +149,8 @@ function previousQuestion() {
         return false
     } else {
         currentQuestion--;
+        number--;
+        document.getElementById('question-number').innerHTML = `${number}`;
         showQuestion();
     }
     resetAnswerButtons();
@@ -158,18 +175,30 @@ function showEndScreen() {
     let content = document.getElementById('content');
     content.innerHTML = '';
     changeInnerContent();
-    content.innerHTML += /*html*/`
+    content.innerHTML += endScreenHTML();
+    
+    let hideArrow = document.getElementById('arrows')
+    hideArrow.classList.add("hide");
+    endResult();
+}
+
+
+function endScreenHTML() {
+    return  /*html*/`
     <div class="end-screen">
         <img class="brain-img" src="img/brain result.png">
-        <span class="endScreen-text">Herzlichen Glückwunsch! Du hast das Kulinarik Quiz abgeschlossen!</span>
-        <span class="endScreen-text"><p class="color-orangered">Dein Ergebnis:</p>5/5</span>
+        <span class="endScreen-text">Herzlichen Glückwunsch! Du hast das Quiz abgeschlossen!</span>
+        <span class="endScreen-text"><p class="color-orangered">Dein Ergebnis:</p><p id="result"></p></span>
         <button type="button" class="btn btn-primary share-button">SHARE</button>
         <button onclick="replay()" class="replay-button" type="button">REPLAY</button>
     </div>
     `
+}
 
-    let hideArrow = document.getElementById('arrows')
-    hideArrow.classList.add("hide");
+
+// Zeigt das Endergebnis richtiger Antworten an //
+function  endResult(){
+    document.getElementById('result').innerHTML = rightQuestions+ "/" +kulinarik.length;
 }
 
 

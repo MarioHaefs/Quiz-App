@@ -239,3 +239,11 @@ h5 {
 .replay-button:hover {
     transform: scale(1.02);
 }
+
+.progress {
+    margin-top: 16px;
+}
+
+.progress-bar {
+    background-color: rgb(41, 41, 78) !important;
+}
