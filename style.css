@@ -259,6 +259,22 @@ h5 {
     height: 250px;
 }
 
+#gaming-arrows {
+    position: absolute;
+    bottom: -8%;
+    right: 18%;
+}
+
+#fitness-arrows {
+    position: absolute;
+    bottom: -8%;
+    right: 18%;
+}
+
+.space-right {
+    margin-right: 450px;
+}
+
 @media (max-width:800px) {
     .button {
         position: unset;
@@ -306,6 +322,18 @@ h5 {
 
     .answer {
         margin-left: 24px;
+    }
+
+    #gaming-arrows {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+    }
+
+    #fitness-arrows {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
     }
 }
 
@@ -383,6 +411,18 @@ h5 {
 
     h5 {
         margin-bottom: 24px !important;
+    }
+
+    #gaming-arrows {
+        position: absolute;
+        bottom: 4px;
+        left: 50%;
+    }
+
+    #fitness-arrows {
+        position: absolute;
+        bottom: 4px;
+        left: 50%;
     }
 }
 

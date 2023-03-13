@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="script.js"></script>
+    <script src="json.js"></script>
+    <script src="gamingQuiz.js"></script>
+    <script src="fitnessQuiz.js"></script>
 
 </head>
 
@@ -24,14 +27,13 @@
             <div class="card-body">
                 <div class="nav-quiz">
                     <img onclick="replay()" class="logo-img" src="img/logo.png">
-                    <span class="nav-text space-bottom">Kulinarik</span>
-                    <span class="nav-text space-bottom">CSS</span>
-                    <span class="nav-text space-bottom">JS</span>
-                    <span class="nav-text space-bottom">Java</span>
+                    <span onclick="startQuiz()" class="nav-text space-bottom">Kulinarik</span>
+                    <span onclick="startGamingQuiz()" class="nav-text space-bottom">Gaming</span>
+                    <span onclick="startFitnessQuiz()" class="nav-text space-bottom">Fitness</span>
                 </div>
                 <div id="content" class="content-center background-img">
                     <div class="content-quiz">
-                        <h1 class="card-title">Wilkommen zum köstlichen Kulinarik Quiz!</h1>
+                        <h1 class="card-title">Wilkommen zu meinem Quiz!</h1>
                         <p class="card-text">Bereit zu starten?</p>
                         <button onclick="startQuiz()" class="btn button">START NOW<img class="arrow-btn" src="img/arrow-right.png"></button> 
                     </div>

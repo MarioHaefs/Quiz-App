@@ -1,46 +1,3 @@
-let kulinarik = [
-    {
-        "question": "Welches Gemüse ist der Hauptdarsteller eines an der Amalfi Küste bekannten italienischen Desserts in Verbindung mit dunkler Schokolade?",
-        "answer_1": "Paprika",
-        "answer_2": "Zucchini",
-        "answer_3": "Aubergine",
-        "answer_4": "Spinat",
-        "right_answer": 3
-    },
-    {
-        "question": "Für welches Sandwich ist die amerikanische Stadt Philadelphia über ihre Grenzen hinaus weltweit bekannt?",
-        "answer_1": "Cheesesteak Sandwich",
-        "answer_2": "Pastrami Sandwich",
-        "answer_3": "Club Sandwich",
-        "answer_4": "Italian Beef Sandwich",
-        "right_answer": 1
-    },
-    {
-        "question": "Ein Ausflug nach Schottland: Wie nennt man den mit Herz, Leber, Lunge, Nierenfett vom Schaf, Zwiebeln und Hafermehl gefüllten Schafsmagen?",
-        "answer_1": "Saumagen",
-        "answer_2": "Porridge",
-        "answer_3": "Baps",
-        "answer_4": "Haggis",
-        "right_answer": 4
-    },
-    {
-        "question": "Kimchi gilt als Superfood der koreanischen Küche. Auch bei uns in Europa ist es sehr beliebt. Was ist Kimchi?",
-        "answer_1": "Gegorener Fisch",
-        "answer_2": "Gebratener Seidentofu",
-        "answer_3": "Gegorenes Gemüse",
-        "answer_4": "Fermentierte Sprossen",
-        "right_answer": 3
-    },
-    {
-        "question": "Pommes frites, Cheese curds darauf, mit Bratensauce übergiessen - fertig ist ein beliebtes Fastfood-Gericht Kanadas? Wie heisst es?",
-        "answer_1": "Trumpone",
-        "answer_2": "Poutine",
-        "answer_3": "Chipotle",
-        "answer_4": "Pastore",
-        "right_answer": 2
-    },
-]
-
 let currentQuestion = 0;
 let rightQuestions = 0;
 let number = 1;
@@ -55,7 +12,7 @@ function startQuiz() {
     content.innerHTML = '';
     changeInnerContent();
     content.innerHTML += startQuizHTML();
-    showQuestion();
+    showKulinarikQuestion();
 }
 
 
@@ -99,8 +56,8 @@ function changeInnerContent() {
 }
 
 
-// Zeigt die Fragen aus unserem JSON in unserem Quiz an //
-function showQuestion() {
+// Zeigt die Fragen aus unserem JSON "kulinarik" in unserem Quiz an //
+function showKulinarikQuestion() {
     let question = kulinarik[currentQuestion];
     
     document.getElementById('question-text').innerHTML = question['question'];
@@ -111,6 +68,7 @@ function showQuestion() {
 
     updateProgressBar();
 }
+
 
 
 // Updatet bei jeder beantworteten Frage die Progress Bar um in diesem Fall 20% //
@@ -142,6 +100,8 @@ function answer(selection) {
 }
 
 
+
+// Disablen und Enablen die Antwort Buttons, wenn man eine Antwort gegeben hat. Damit man nicht x mal auf die Antworten klicken kann //
 function disablePointerEvents() {
     document.getElementById('answer_1').style = 'pointer-events:none;';
     document.getElementById('answer_2').style = 'pointer-events:none;';
@@ -166,7 +126,7 @@ function nextQuestion() {
         currentQuestion++;
         number++;
         document.getElementById('question-number').innerHTML = `${number}`;
-        showQuestion();
+        showKulinarikQuestion();
     }
     resetAnswerButtons();
     enablePointerEvents();
@@ -180,7 +140,7 @@ function previousQuestion() {
         currentQuestion--;
         number--;
         document.getElementById('question-number').innerHTML = `${number}`;
-        showQuestion();
+        showKulinarikQuestion();
     }
     resetAnswerButtons();
     enablePointerEvents();
