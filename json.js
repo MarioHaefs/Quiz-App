@@ -68,16 +68,16 @@ let gaming = [
         "right_answer": 2
     },
     {
-        "question": "Welche Antwort passt nicht zusammen?",
-        "answer_1": "Heroes of the Storm, DOTA, League of Legends",
-        "answer_2": "Elex, Risen, Gothic",
-        "answer_3": "Half-Life, Bioshock, Fortnite",
-        "answer_4": "Civilization, Starcraft, Age of Empires",
+        "question": "Welchen dieser Videospiel-Charaktere gibt es nicht?",
+        "answer_1": "Commander Shepard",
+        "answer_2": "Isaac Clarke",
+        "answer_3": "Sam Aran",
+        "answer_4": "Kratos",
         "right_answer": 3
     },
     {
-        "question": "Welches dieser Titel ist kein(!) MMORPG?",
-        "answer_1": "Star Wars: Knights of the Old Republic",
+        "question": "Welches dieser Titel ist kein MMORPG?",
+        "answer_1": "Elden Ring",
         "answer_2": "Final Fantasy XIV",
         "answer_3": "New World",
         "answer_4": "Neverwinter",

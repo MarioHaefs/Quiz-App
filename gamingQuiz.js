@@ -38,7 +38,7 @@ function startGamingQuizHTML() {
         </div>
     </div>
     <div id="gaming-arrows" class="left-right-arrow hide">
-        <img onclick="previousGamingQuestion()" class="arrow-hover space-right" src="img/pfeil-links.png" ><img onclick="nextGamingQuestion()" class="arrow-hover" src="img/pfeil-rechts.png" >
+       <img id="gaming-arrow" onclick="nextGamingQuestion()" class="arrow-hover" src="img/pfeil-rechts.png" >
     </div>
     `;
 }
@@ -53,6 +53,7 @@ function showGamingQuestion() {
     document.getElementById('answer-3').innerHTML = question['answer_3'];
     document.getElementById('answer-4').innerHTML = question['answer_4'];
 
+    document.getElementById('gaming-arrow').style = 'pointer-events:none;';
     updateProgressBar();
 }
 
@@ -72,6 +73,7 @@ function gamingAnswer(selection) {
         AUDIO_FAIL.play();
     }
     disablePointerEvents();
+    document.getElementById('gaming-arrow').style = 'pointer-events:auto;';
 }
 
 
@@ -87,18 +89,3 @@ function nextGamingQuestion() {
     resetAnswerButtons();
     enablePointerEvents();
 }
-
-
-function previousGamingQuestion() {
-    if (currentQuestion == 0) {
-        return false
-    } else {
-        currentQuestion--;
-        number--;
-        document.getElementById('question-number').innerHTML = `${number}`;
-        showGamingQuestion();
-    }
-    resetAnswerButtons();
-    enablePointerEvents();
-}
-

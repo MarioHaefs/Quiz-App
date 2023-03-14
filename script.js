@@ -66,6 +66,7 @@ function showKulinarikQuestion() {
     document.getElementById('answer-3').innerHTML = question['answer_3'];
     document.getElementById('answer-4').innerHTML = question['answer_4'];
 
+    document.getElementById('arrow-right').style = 'pointer-events:none;';
     updateProgressBar();
 }
 
@@ -97,6 +98,7 @@ function answer(selection) {
         AUDIO_FAIL.play();
     }
     disablePointerEvents();
+    document.getElementById('arrow-right').style = 'pointer-events:auto;';
 }
 
 
@@ -118,27 +120,13 @@ function enablePointerEvents() {
 }
 
 
-// Zeigt bei onclick auf die Pfeile die vorherige oder nächste Frage an //
+// Zeigt bei onclick auf den Pfeil die nächste Frage an //
 function nextQuestion() {
     if (currentQuestion >= 4) {
         showEndScreen();
     } else {
         currentQuestion++;
         number++;
-        document.getElementById('question-number').innerHTML = `${number}`;
-        showKulinarikQuestion();
-    }
-    resetAnswerButtons();
-    enablePointerEvents();
-}
-
-
-function previousQuestion() {
-    if (currentQuestion == 0) {
-        return false
-    } else {
-        currentQuestion--;
-        number--;
         document.getElementById('question-number').innerHTML = `${number}`;
         showKulinarikQuestion();
     }

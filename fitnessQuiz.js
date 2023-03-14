@@ -38,7 +38,7 @@ function startFitnessQuizHTML() {
         </div>
     </div>
     <div id="fitness-arrows" class="left-right-arrow hide">
-        <img onclick="previousFitnessQuestion()" class="arrow-hover space-right" src="img/pfeil-links.png" ><img onclick="nextFitnessQuestion()" class="arrow-hover" src="img/pfeil-rechts.png" >
+        <img id="fitness-arrow" onclick="nextFitnessQuestion()" class="arrow-hover" src="img/pfeil-rechts.png" >
     </div>
     `;
 }
@@ -53,6 +53,7 @@ function showFitnessQuestion() {
     document.getElementById('answer-3').innerHTML = question['answer_3'];
     document.getElementById('answer-4').innerHTML = question['answer_4'];
 
+    document.getElementById('fitness-arrow').style = 'pointer-events:none;';
     updateProgressBar();
 }
 
@@ -72,6 +73,7 @@ function fitnessAnswer(selection) {
         AUDIO_FAIL.play();
     }
     disablePointerEvents();
+    document.getElementById('fitness-arrow').style = 'pointer-events:auto;';
 }
 
 
@@ -87,18 +89,3 @@ function nextFitnessQuestion() {
     resetAnswerButtons();
     enablePointerEvents();
 }
-
-
-function previousFitnessQuestion() {
-    if (currentQuestion == 0) {
-        return false
-    } else {
-        currentQuestion--;
-        number--;
-        document.getElementById('question-number').innerHTML = `${number}`;
-        showFitnessQuestion();
-    }
-    resetAnswerButtons();
-    enablePointerEvents();
-}
-
